@@ -69,7 +69,7 @@ function App(){
                         fontSize:"14px"
                     }}
                 >
-                    FINKI x NETCETERA
+                    {/*FINKI x NETCETERA*/}
                 </p>
 
             </div>

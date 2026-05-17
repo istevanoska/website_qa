@@ -1427,22 +1427,30 @@ window.Sprint3Slide = () => {
     // ── SLIDE 0: Bar chart — Time per module ──
     const ChartSlide = () => {
         const modules = [
-            { label: "Navigation",       manual: 35,  ai: 120 },
-            { label: "Shopping Cart",    manual: 35,  ai: 90  },
-            { label: "Search & Filter",  manual: 30,  ai: 225 },
-            { label: "Checkout",         manual: 25,  ai: 120 },
-            { label: "Error Handling",   manual: 15,  ai: 30  },
-            { label: "Product Details",  manual: 95,  ai: 55  },
-            { label: "User Account",     manual: 80,  ai: 50  },
+            { label: "Navigation",      manual: 35,  ai: 120 },
+            { label: "Shopping Cart",   manual: 35,  ai: 90  },
+            { label: "Search & Filter", manual: 30,  ai: 225 },
+            { label: "Checkout",        manual: 25,  ai: 120 },
+            { label: "Error Handling",  manual: 15,  ai: 30  },
+            { label: "Product Details", manual: 95,  ai: 55  },
+            { label: "User Account",    manual: 80,  ai: 50  },
         ];
         const maxVal = 250;
+        const chartH = 180;
+        const barW = 18;
+        const gap = 8;
+        const groupW = barW * 2 + gap;
+        const groupGap = 22;
+        const totalW = modules.length * (groupW + groupGap) - groupGap;
+
         return (
             <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "2px" }}>
                     TIME PER MODULE — MANUAL (1 TEST) VS AI-ASSISTED (REST)
                 </p>
+
                 {/* Legend */}
-                <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "6px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                         <div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/>
                         <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual (1 test)</span>
@@ -1452,39 +1460,88 @@ window.Sprint3Slide = () => {
                         <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>AI-assisted (remaining tests)</span>
                     </div>
                 </div>
-                {/* Bars */}
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    {modules.map((m, i) => (
-                        <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "10px", width: "82px", textAlign: "right", flexShrink: 0 }}>{m.label}</span>
-                            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "3px" }}>
-                                {[{ val: m.manual, color: "#3b5ea6" }, { val: m.ai, color: "#61E6D8" }].map((b, bi) => (
-                                    <div key={bi} style={{ height: "10px", background: "rgba(255,255,255,0.06)", borderRadius: "3px", overflow: "hidden" }}>
-                                        <div style={{
-                                            height: "100%",
-                                            width: animated ? `${(b.val / maxVal) * 100}%` : "0%",
-                                            background: b.color,
-                                            borderRadius: "3px",
-                                            transition: `width 1s ease ${i * 0.08}s`
-                                        }} />
-                                    </div>
-                                ))}
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "3px", width: "38px" }}>
-                                {[m.manual, m.ai].map((v, vi) => (
-                                    <span key={vi} style={{ fontSize: "9px", color: vi === 0 ? "rgba(255,255,255,0.5)" : "#61E6D8", fontWeight: vi === 1 ? 600 : 400 }}>{v}m</span>
-                                ))}
-                            </div>
+
+                {/* Chart area */}
+                <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+                    {/* Y-axis gridlines */}
+                    {[0, 50, 100, 150, 200, 250].map((v, i) => (
+                        <div key={i} style={{
+                            position: "absolute",
+                            left: 0, right: 0,
+                            bottom: `${28 + (v / maxVal) * chartH}px`,
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "6px"
+                        }}>
+                            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "8px", width: "22px", textAlign: "right", flexShrink: 0 }}>{v}m</span>
+                            <div style={{ flex: 1, height: "1px", background: v === 0 ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.05)" }} />
                         </div>
                     ))}
+
+                    {/* Bars */}
+                    <div style={{
+                        position: "absolute",
+                        bottom: "28px",
+                        left: "32px",
+                        right: "0",
+                        display: "flex",
+                        alignItems: "flex-end",
+                        gap: `${groupGap}px`
+                    }}>
+                        {modules.map((m, i) => (
+                            <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
+                                {/* Grouped bars */}
+                                <div style={{ display: "flex", alignItems: "flex-end", gap: `${gap}px` }}>
+                                    {/* Manual bar */}
+                                    <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                    <span style={{
+                                        fontSize: "8px", color: "rgba(255,255,255,0.5)",
+                                        marginBottom: "2px", position: "absolute",
+                                        bottom: `${animated ? (m.manual / maxVal) * chartH : 0}px`,
+                                        transition: `bottom 0.9s ease ${i * 0.07}s`
+                                    }}>{m.manual}</span>
+                                        <div style={{
+                                            width: `${barW}px`,
+                                            height: animated ? `${(m.manual / maxVal) * chartH}px` : "0px",
+                                            background: "linear-gradient(to top, #2a3f7a, #3b5ea6)",
+                                            borderRadius: "4px 4px 0 0",
+                                            transition: `height 0.9s ease ${i * 0.07}s`
+                                        }} />
+                                    </div>
+                                    {/* AI bar */}
+                                    <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                    <span style={{
+                                        fontSize: "8px", color: "#61E6D8",
+                                        marginBottom: "2px", position: "absolute",
+                                        bottom: `${animated ? (m.ai / maxVal) * chartH : 0}px`,
+                                        transition: `bottom 0.9s ease ${i * 0.07}s`
+                                    }}>{m.ai}</span>
+                                        <div style={{
+                                            width: `${barW}px`,
+                                            height: animated ? `${(m.ai / maxVal) * chartH}px` : "0px",
+                                            background: "linear-gradient(to top, #2aa89a, #61E6D8)",
+                                            borderRadius: "4px 4px 0 0",
+                                            transition: `height 0.9s ease ${i * 0.07}s`
+                                        }} />
+                                    </div>
+                                </div>
+                                {/* X label */}
+                                <span style={{
+                                    fontSize: "8px", color: "rgba(255,255,255,0.4)",
+                                    textAlign: "center", width: `${groupW}px`,
+                                    lineHeight: "1.2", marginTop: "4px"
+                                }}>{m.label}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", lineHeight: "1.5", marginTop: "4px" }}>
+
+                <p style={{ color: "rgba(255,255,255,0.22)", fontSize: "9px", lineHeight: "1.5" }}>
                     AI time includes debugging & refinement. Product Details & User Account: ~55–50 min/TC (post-refactor).
                 </p>
             </div>
         );
     };
-
     // ── SLIDE 1: Per-module breakdown ──
     const ModulesSlide = () => {
         const modules = [
@@ -1823,81 +1880,283 @@ window.ComparisonSlide = () => (
 
 )
 
-/* ---------------- MENTORS ---------------- */
+window.ConclusionSlide = () => {
 
-window.MentorsSlide = () => (
+    const [slide, setSlide] = React.useState(0);
+    const [transitioning, setTransitioning] = React.useState(false);
+    const totalSlides = 3;
 
-    <SlideRoot>
+    React.useEffect(() => {
+        const t = setInterval(() => goTo((slide + 1) % totalSlides), 6000);
+        return () => clearInterval(t);
+    }, [slide]);
 
-        <div
-            style={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                padding: "90px 70px"
-            }}
-        >
+    const goTo = (n) => {
+        if (transitioning) return;
+        setTransitioning(true);
+        setTimeout(() => { setSlide(n); setTransitioning(false); }, 280);
+    };
 
-            <p
-                style={{
-                    color: "#61E6D8",
-                    letterSpacing: "0.45em",
-                    fontSize: "12px",
-                    marginBottom: "20px"
-                }}
-            >
-                MENTORS
-            </p>
+    // ── SLIDE 0: Key metrics + Manual vs AI wins ──
+    const KeyTakeawaysSlide = () => (
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>KEY TAKEAWAYS ACROSS ALL SPRINTS</p>
 
-            <h1
-                className="display"
-                style={{
-                    fontSize: "clamp(50px,6vw,110px)",
-                    marginBottom: "60px"
-                }}
-            >
-                Project Guidance
-            </h1>
-
-            <div
-                style={{
-                    display: "flex",
-                    gap: "24px",
-                    flexWrap: "wrap"
-                }}
-            >
-
-                {
-                    [
-                        "Savo Kostadinov",
-                        "Biljana Mihajlovska",
-                        "Nikola Gjurkovski"
-                    ].map((mentor, index) => (
-
-                        <div
-                            key={index}
-                            className="glass"
-                            style={{
-                                padding: "30px 36px",
-                                borderRadius: "28px",
-                                fontSize: "24px"
-                            }}
-                        >
-                            {mentor}
-                        </div>
-
-                    ))
-                }
-
+            {/* Metrics row */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "8px" }}>
+                {[
+                    { val: "~37–42%", label: "FASTER WITH AI",     color: "#61E6D8" },
+                    { val: "10×",     label: "FASTER TC CREATION",  color: "#8EA4FF" },
+                    { val: "+22%",    label: "DEFECT COVERAGE",     color: "#FFB86B" },
+                    { val: "100%",    label: "AI TRACEABILITY",     color: "#FF8DA1" },
+                ].map((m, i) => (
+                    <div key={i} style={{
+                        padding: "14px 10px", borderRadius: "14px",
+                        background: `${m.color}0A`,
+                        border: `1px solid ${m.color}30`,
+                        textAlign: "center"
+                    }}>
+                        <div className="display" style={{ fontSize: "clamp(18px,2vw,28px)", color: m.color, letterSpacing: "-0.02em" }}>{m.val}</div>
+                        <div style={{ fontSize: "8px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.38)", marginTop: "4px" }}>{m.label}</div>
+                    </div>
+                ))}
             </div>
 
+            {/* Manual vs AI wins */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
+                {[
+                    { dot: "#8EA4FF", title: "Where manual is irreplaceable", items: [
+                            "Discovering unexpected, unknown bugs",
+                            "iframe & sync stabilization",
+                            "Page Object architecture design",
+                            "Precise functional defect reports",
+                            "Tester intuition & contextual judgment",
+                            "Reusable helpers: FrameUtils, WaitUtils",
+                        ]},
+                    { dot: "#61E6D8", title: "Where AI gives the advantage", items: [
+                            "Initial code generation (37–42% faster)",
+                            "Bulk test case creation (10× faster)",
+                            "CSS locator identification",
+                            "Edge cases & security scenarios",
+                            "Structured, regression-ready documentation",
+                            "Complex validation logic",
+                        ]},
+                ].map((col, ci) => (
+                    <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "14px", padding: "16px 18px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: col.dot }} />
+                            <span style={{ fontSize: "12px", fontWeight: 700 }}>{col.title}</span>
+                        </div>
+                        {col.items.map((item, ii) => (
+                            <div key={ii} style={{ display: "flex", alignItems: "center", gap: "7px", padding: "5px 0", borderBottom: ii < col.items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                                <span style={{ color: col.dot, fontSize: "11px" }}>✓</span>
+                                <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "11px" }}>{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+
+            {/* Insight note */}
+            <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px" }}>
+                <span style={{ fontSize: "14px", flexShrink: 0 }}>💡</span>
+                <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
+                    <strong style={{ color: "#61E6D8" }}>Neither approach is sufficient alone.</strong> The winning pattern: AI generates the skeleton, human engineers the architecture. Best strategy: explore manually first, then use AI to formalise findings into structured, traceable test cases.
+                </p>
+            </div>
         </div>
+    );
 
-    </SlideRoot>
+    // ── SLIDE 1: Who, when & why + Division of responsibilities ──
+    const ResponsibilitiesSlide = () => (
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>AI VS HUMAN — WHO, WHEN & WHY</p>
+            <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px" }}>Optimal division of responsibilities and the best AI tool for each task</p>
 
-)
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                {[
+                    { dot: "#8EA4FF", title: "Human is required", items: [
+                            "Page Object Model architecture",
+                            "iframe & sync wait stabilization",
+                            "Discovering unknown, unexpected bugs",
+                            "Final validation & code review",
+                            "Tester intuition & contextual reasoning",
+                            "Helper methods: FrameUtils, WaitUtils",
+                        ]},
+                    { dot: "#61E6D8", title: "Ideal for AI", items: [
+                            "Generating test code skeleton (37–42% faster)",
+                            "Bulk test case creation (10× faster)",
+                            "CSS locator identification",
+                            "Edge cases & security scenarios",
+                            "Regression-ready structured documentation",
+                            "Complex validation logic",
+                        ]},
+                ].map((col, ci) => (
+                    <div key={ci} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "14px", padding: "16px 18px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
+                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: col.dot }} />
+                            <span style={{ fontSize: "12px", fontWeight: 700 }}>{col.title}</span>
+                        </div>
+                        {col.items.map((item, ii) => (
+                            <div key={ii} style={{ display: "flex", alignItems: "center", gap: "7px", padding: "5px 0", borderBottom: ii < col.items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                                <span style={{ color: col.dot, fontSize: "11px" }}>✓</span>
+                                <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "11px" }}>{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
 
+            {/* Optimal workflow */}
+            <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px" }}>
+                <span style={{ fontSize: "14px", flexShrink: 0 }}>⇄</span>
+                <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
+                    <strong style={{ color: "#61E6D8" }}>Optimal workflow:</strong> Explore manually first → AI generates skeleton & test cases → Engineer builds POM architecture → AI fills in edge cases → Human finalizes, stabilizes & verifies. Neither AI nor human alone is enough — the win is in the synergy.
+                </p>
+            </div>
+        </div>
+    );
+
+    // ── SLIDE 2: Which AI tool is best for what ──
+    const AIToolsSlide = () => {
+        const tools = [
+            { name: "Claude (Anthropic)",   desc: "Test code generation, POM structures, complex Selenium scenarios, detailed analysis & refactoring",          tag: "code generation",    tagColor: "#8EA4FF" },
+            { name: "ChatGPT / GPT-4o",     desc: "Test case writing, exploratory charter creation, bug report formatting, rapid scenario prototyping",          tag: "TC & documentation", tagColor: "#61E6D8" },
+            { name: "GitHub Copilot",        desc: "Inline autocomplete in IDE, repetitive Selenium methods, fast assertion generation directly in code",          tag: "IDE integration",    tagColor: "#A8FFD8" },
+            { name: "Gemini (Google)",       desc: "Log file analysis, quick documentation lookup, integration with Google Workspace reports",                     tag: "analysis & logs",    tagColor: "#FFB86B" },
+            { name: "Perplexity / web AI",   desc: "Researching framework options, current Selenium/JUnit best practices, resolving specific errors",              tag: "research",           tagColor: "#FF8DA1" },
+            { name: "Any AI model",          desc: "Should never replace the tester's final decision — AI makes mistakes with locators, waits, and iframe context", tag: "support only",       tagColor: "#888" },
+        ];
+        return (
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em" }}>WHICH AI TOOL IS BEST FOR WHAT</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", flex: 1 }}>
+                    {tools.map((t, i) => (
+                        <div key={i} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                            <span style={{ fontSize: "12px", fontWeight: 700, color: "#fff" }}>{t.name}</span>
+                            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "10px", lineHeight: "1.55", flex: 1, margin: 0 }}>{t.desc}</p>
+                            <div style={{
+                                display: "inline-block", padding: "3px 10px", borderRadius: "999px",
+                                background: `${t.tagColor}18`, border: `1px solid ${t.tagColor}40`,
+                                color: t.tagColor, fontSize: "9px", fontWeight: 600, letterSpacing: "0.05em",
+                                alignSelf: "flex-start"
+                            }}>{t.tag}</div>
+                        </div>
+                    ))}
+                </div>
+                {/* Optimal workflow */}
+                <div style={{ background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)", borderRadius: "12px", padding: "12px 16px", display: "flex", gap: "10px" }}>
+                    <span style={{ fontSize: "14px", flexShrink: 0 }}>⇄</span>
+                    <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "11px", lineHeight: "1.6", margin: 0 }}>
+                        <strong style={{ color: "#61E6D8" }}>Optimal workflow:</strong> Explore manually first → AI generates skeleton & test cases → Engineer builds POM architecture → AI fills in edge cases → Human finalizes, stabilizes & verifies. Neither AI nor human alone is enough — <strong style={{ color: "#fff" }}>the win is in the synergy.</strong>
+                    </p>
+                </div>
+            </div>
+        );
+    };
+
+    const slides = [KeyTakeawaysSlide, ResponsibilitiesSlide, AIToolsSlide];
+    const labels = ["Key Takeaways", "Who & When", "AI Tools"];
+    const ActiveSlide = slides[slide];
+
+    return (
+        <SlideRoot>
+            <div style={{ height: "100%", display: "grid", gridTemplateColumns: "0.75fr 1.25fr", position: "relative", overflow: "hidden" }}>
+
+                {/* BG GLOWS */}
+                <div style={{ position: "absolute", width: "700px", height: "700px", borderRadius: "50%", background: "radial-gradient(circle, rgba(97,230,216,0.08), transparent 70%)", right: "-150px", top: "-100px", filter: "blur(70px)", pointerEvents: "none", zIndex: 0 }} />
+                <div style={{ position: "absolute", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(142,164,255,0.09), transparent 70%)", left: "0", bottom: "-80px", filter: "blur(60px)", pointerEvents: "none", zIndex: 0 }} />
+
+                {/* ── LEFT ── */}
+                <div style={{ padding: "52px 36px 52px 56px", display: "flex", flexDirection: "column", justifyContent: "space-between", position: "relative", zIndex: 2 }}>
+
+                    <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
+                            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#61E6D8", boxShadow: "0 0 10px #61E6D8", flexShrink: 0 }} />
+                            <p style={{ color: "#61E6D8", letterSpacing: "0.45em", fontSize: "11px", fontWeight: 600 }}>SPRINT 1 · 2 · 3</p>
+                        </div>
+
+                        <h1 className="display" style={{ fontSize: "clamp(36px,4vw,60px)", lineHeight: "0.93", letterSpacing: "-0.04em", marginBottom: "22px" }}>
+                            Final<br/>
+                            Conclusion.<br/>
+                            <span style={{ background: "linear-gradient(90deg,#fff,#61E6D8)", WebkitBackgroundClip: "text", color: "transparent" }}>
+                                Key insights.
+                            </span>
+                        </h1>
+
+                        <p style={{ color: "rgba(255,255,255,0.42)", fontSize: "12px", lineHeight: "1.7", maxWidth: "320px" }}>
+                            Key takeaways across all sprints — test automation & exploratory testing.
+                        </p>
+                    </div>
+
+                    {/* Sprint journey */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                        <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "9px", letterSpacing: "0.3em", marginBottom: "4px" }}>SPRINT JOURNEY</p>
+                        {[
+                            { label: "Sprint 1", desc: "Exploratory testing · 14+ bugs · 25+ TCs",  color: "#61E6D8" },
+                            { label: "Sprint 2", desc: "Manual vs AI · 3 testers · 3 platforms",     color: "#8EA4FF" },
+                            { label: "Sprint 3", desc: "Selenium automation · 7 modules · ~37% AI+", color: "#FFB86B" },
+                        ].map((s, i) => (
+                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", padding: "8px 12px", borderRadius: "10px", background: `${s.color}08`, border: `1px solid ${s.color}22` }}>
+                                <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: s.color, flexShrink: 0 }} />
+                                <div>
+                                    <div style={{ fontSize: "11px", fontWeight: 700, color: s.color }}>{s.label}</div>
+                                    <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.4)" }}>{s.desc}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Final verdict */}
+                    <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(97,230,216,0.06)", border: "1px solid rgba(97,230,216,0.18)" }}>
+                        <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "8px", letterSpacing: "0.3em", marginBottom: "8px" }}>FINAL VERDICT</p>
+                        <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "12px", lineHeight: "1.65", margin: 0 }}>
+                            AI + Human together outperform either approach alone — every time.
+                        </p>
+                    </div>
+
+                </div>
+
+                {/* ── RIGHT: SLIDESHOW ── */}
+                <div style={{ padding: "36px 48px 36px 16px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
+
+                    {/* TABS */}
+                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0 }}>
+                        {labels.map((lbl, i) => (
+                            <button key={i} onClick={() => goTo(i)} style={{
+                                padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
+                                background: slide === i ? "rgba(97,230,216,0.15)" : "rgba(255,255,255,0.05)",
+                                border: slide === i ? "1px solid rgba(97,230,216,0.4)" : "1px solid rgba(255,255,255,0.08)",
+                                color: slide === i ? "#61E6D8" : "rgba(255,255,255,0.45)",
+                                transition: "all 0.2s ease"
+                            }}>{lbl}</button>
+                        ))}
+                        <div style={{ marginLeft: "auto", display: "flex", gap: "6px", alignItems: "center" }}>
+                            {Array.from({ length: totalSlides }).map((_, i) => (
+                                <div key={i} onClick={() => goTo(i)} style={{
+                                    width: slide === i ? "20px" : "6px", height: "6px", borderRadius: "99px",
+                                    background: slide === i ? "#61E6D8" : "rgba(255,255,255,0.2)",
+                                    cursor: "pointer", transition: "all 0.3s ease"
+                                }} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* SLIDE CONTENT */}
+                    <div style={{
+                        flex: 1, minHeight: 0,
+                        opacity: transitioning ? 0 : 1,
+                        transform: transitioning ? "translateY(8px)" : "translateY(0)",
+                        transition: "opacity 0.28s ease, transform 0.28s ease"
+                    }}>
+                        <ActiveSlide />
+                    </div>
+
+                </div>
+            </div>
+        </SlideRoot>
+    );
+}
 /* ---------------- FINAL ---------------- */
 
 window.FinalSlide = () => (
@@ -1953,19 +2212,12 @@ window.FinalSlide = () => (
 window.Slides = [
 
     window.TitleSlide,
-
     window.OverviewSlide,
-
     window.Sprint1Slide,
-
     window.Sprint2Slide,
-
     window.Sprint3Slide,
-
     window.ComparisonSlide,
-
-    window.MentorsSlide,
-
-    window.FinalSlide
+    window.FinalSlide,
+    window.ConclusionSlide
 
 ]
