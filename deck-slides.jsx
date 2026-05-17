@@ -960,7 +960,7 @@ window.Sprint1Slide = () => {
         {
             icon: "◎",
             label: "STEP 01",
-            text: "Explored 8+ components of the PrestaShop demo — navigation, filters, cart, auth and more."
+            text: "Explored 8+ components of the PrestaShop demo — navigation, filters, cart, authentication and more."
         },
         {
             icon: "⬡",
