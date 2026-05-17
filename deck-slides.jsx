@@ -2216,7 +2216,6 @@ window.Slides = [
     window.Sprint1Slide,
     window.Sprint2Slide,
     window.Sprint3Slide,
-    window.ComparisonSlide,
     window.FinalSlide,
     window.ConclusionSlide
 
