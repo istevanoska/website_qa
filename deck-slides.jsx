@@ -299,38 +299,16 @@ window.OverviewSlide = () => {
     ];
 
     const tools = [
-        {
-            "id": 1,
-            "name": "Qase"
-        },
-        {
-            "id": 2,
-            "name": "Dillinger"
-        },
-        {
-            "id": 3,
-            "name": "Excel"
-        },
-        {
-            "id": 4,
-            "name": "Canva"
-        },
-        {
-            "id": 5,
-            "name": "Taiga"
-        },
-        {
-            "id": 6,
-            "name": "IntelliJ"
-        },
-        {
-            "id": 7,
-            "name": "Selenium"
-        },
-        {
-            "id": 8,
-            "name": "JUnit"
-        }
+        { id: 1, name: "Qase", color: "#61E6D8" },       // Test management
+        { id: 2, name: "Dillinger", color: "#61E6D8" },
+        { id: 3, name: "Excel", color: "#61E6D8" },
+        { id: 4, name: "Canva", color: "#FFB86B" },      // Design
+        { id: 5, name: "Taiga", color: "#61E6D8" },
+        { id: 6, name: "IntelliJ", color: "#8EA4FF" },   // Development
+        { id: 7, name: "WebStorm", color: "#8EA4FF" },
+        { id: 8, name: "Selenium", color: "#8EA4FF" },
+        { id: 9, name: "JUnit", color: "#8EA4FF" },
+        { id: 10, name: "Vercel", color: "#FF8DA1" }     // Deployment
     ];
 
     return (
@@ -904,32 +882,92 @@ window.OverviewSlide = () => {
                             style={{
                                 display:"flex",
                                 flexWrap:"wrap",
-                                gap:"10px"
+                                gap:"14px",
+                                alignItems:"flex-start"
                             }}
                         >
-
                             {
-                                tools.map((tool)=>(
+                                [
+                                    {
+                                        category:"Test Management & Documentation",
+                                        color:"#61E6D8",
+                                        tools:["Qase", "Taiga", "Excel", "Dillinger"]
+                                    },
+                                    {
+                                        category:"Development & Automation",
+                                        color:"#8EA4FF",
+                                        tools:["IntelliJ", "Selenium", "JUnit"]
+                                    },
+                                    {
+                                        category:"Presentation",
+                                        color:"#FFB86B",
+                                        tools:["React","JavaScript","WebStorm", "Canva"]
+                                    },
+                                    {
+                                        category:"Deployment",
+                                        color:"#FF8DA1",
+                                        tools:["Vercel"]
+                                    }
+                                ].map((group, index)=>(
 
                                     <div
-                                        key={tool.id}
+                                        key={index}
                                         style={{
-                                            padding:"10px 16px",
-                                            borderRadius:"12px",
-                                            background:"rgba(255,255,255,0.05)",
-                                            border:"1px solid rgba(255,255,255,0.08)",
-                                            color:"rgba(255,255,255,0.78)",
-                                            fontSize:"12px",
-                                            fontWeight:500,
-                                            backdropFilter:"blur(10px)"
+                                            border:`1px solid ${group.color}45`,
+                                            background:`${group.color}10`,
+                                            borderRadius:"18px",
+                                            padding:"12px 14px",
+                                            boxShadow:`0 0 18px ${group.color}12`
                                         }}
                                     >
-                                        {tool.name}
+
+                                        <p
+                                            style={{
+                                                color:group.color,
+                                                fontSize:"9px",
+                                                letterSpacing:"0.18em",
+                                                marginBottom:"10px",
+                                                fontWeight:"700",
+                                                textTransform:"uppercase"
+                                            }}
+                                        >
+                                            {group.category}
+                                        </p>
+
+                                        <div
+                                            style={{
+                                                display:"flex",
+                                                gap:"8px",
+                                                flexWrap:"wrap"
+                                            }}
+                                        >
+                                            {
+                                                group.tools.map((tool, i)=>(
+
+                                                    <div
+                                                        key={i}
+                                                        style={{
+                                                            padding:"8px 12px",
+                                                            borderRadius:"12px",
+                                                            background:"rgba(255,255,255,0.06)",
+                                                            border:"1px solid rgba(255,255,255,0.08)",
+                                                            color:"rgba(255,255,255,0.82)",
+                                                            fontSize:"11px",
+                                                            fontWeight:600,
+                                                            whiteSpace:"nowrap"
+                                                        }}
+                                                    >
+                                                        {tool}
+                                                    </div>
+
+                                                ))
+                                            }
+                                        </div>
+
                                     </div>
 
                                 ))
                             }
-
                         </div>
 
                     </div>
@@ -1256,7 +1294,7 @@ window.Sprint2Slide = () => {
     // ── SLIDE 1: Bugs by approach + Severity donut ──
     const BugsSlide = () => {
         const bugData = [
-            { label: "Tablet report",       manual: 16, ai: 11 },
+            { label: "",       manual: 16, ai: 11 },
             { label: "Mobile report", manual: 14, ai: 12 },
         ];
         const segs = [
