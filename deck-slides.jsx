@@ -1256,7 +1256,7 @@ window.Sprint2Slide = () => {
     // ── SLIDE 1: Bugs by approach + Severity donut ──
     const BugsSlide = () => {
         const bugData = [
-            { label: "Leonida",       manual: 16, ai: 11 },
+            { label: "Tablet report",       manual: 16, ai: 11 },
             { label: "Mobile report", manual: 14, ai: 12 },
         ];
         const segs = [
