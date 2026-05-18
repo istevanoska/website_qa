@@ -67,30 +67,40 @@ window.TitleSlide = () => (
                     style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: "12px",
+                        gap: "16px",
                         marginBottom: "32px"
                     }}
                 >
 
-                    <div
+                    <img
+                        src="screenshots/finki_logo_white.png"
+                        alt="FINKI"
                         style={{
-                            width: "10px",
-                            height: "10px",
-                            borderRadius: "50%",
-                            background: "#61E6D8",
-                            boxShadow: "0 0 20px #61E6D8"
+                            height: "38px",
+                            objectFit: "contain",
+                            background: "transparent"
                         }}
                     />
 
-                    <p
+                    <span
                         style={{
-                            color: "#8EA4FF",
-                            letterSpacing: "0.45em",
-                            fontSize: "12px"
+                            color: "rgba(255,255,255,0.28)",
+                            fontSize: "22px",
+                            fontWeight: "300",
+                            lineHeight: 1
                         }}
                     >
-                        FINKI x NETCETERA
-                    </p>
+                </span>
+
+                    <img
+                        src="screenshots/netcetera_logo_white.png"
+                        alt="Netcetera"
+                        style={{
+                            height: "34px",
+                            objectFit: "contain",
+                            background: "transparent"
+                        }}
+                    />
 
                 </div>
 
@@ -140,9 +150,10 @@ window.TitleSlide = () => (
                         marginInline: "auto"
                     }}
                 >
-                    Exploring manual, exploratory and automated testing
-                    workflows while comparing traditional QA processes
-                    with AI-assisted testing solutions.
+                    Manual, Exploratory, and Automated Testing
+                    {/*Exploring manual, exploratory and automated testing*/}
+                    {/*workflows while comparing traditional QA processes*/}
+                    {/*with AI-assisted testing solutions.*/}
                 </p>
 
                 {/* TAGS */}
@@ -1019,7 +1030,8 @@ window.Sprint1Slide = () => {
                 display: "grid",
                 gridTemplateColumns: "1.05fr 0.95fr",
                 position: "relative",
-                overflow: "hidden"
+                overflow: "hidden",
+
             }}>
 
                 {/* BG glow right */}
@@ -1077,7 +1089,8 @@ window.Sprint1Slide = () => {
                         borderRadius: "18px",
                         padding: "20px 24px",
                         maxWidth: "460px",
-                        boxShadow: "0 0 40px rgba(97,230,216,0.06)"
+                        boxShadow: "0 0 40px rgba(97,230,216,0.06)",
+                        zoom:1.2
                     }}>
                         {/* card header */}
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
@@ -1116,7 +1129,8 @@ window.Sprint1Slide = () => {
                     justifyContent: "center",
                     gap: "0",
                     position: "relative",
-                    zIndex: 2
+                    zIndex: 2,
+                    zoom:1.3
                 }}>
 
                     {/* VERIFIED LABEL */}
@@ -1284,6 +1298,7 @@ window.Sprint2Slide = () => {
             }
         ];
         return (
+<<<<<<< HEAD
             <div style={{ height:"100%", display:"flex", flexDirection:"column", gap:"12px" }}>
                 <p style={{ color:"rgba(255,255,255,0.35)", fontSize:"9px", letterSpacing:"0.35em" }}>
                     HEAD-TO-HEAD COMPARISON
@@ -1307,6 +1322,16 @@ window.Sprint2Slide = () => {
                             marginBottom:"6px"
                         }}>
                             {h.toUpperCase()}
+=======
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8 }}>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>HEAD-TO-HEAD COMPARISON</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
+                    {/* Manual */}
+                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#8EA4FF" }} />
+                            <span style={{ fontSize: "13px", fontWeight: 700 }}>Manual testing</span>
+>>>>>>> 3556724aa1f4f935cc4c6460bb58c04566537689
                         </div>
                     ))}
 
@@ -1364,6 +1389,7 @@ window.Sprint2Slide = () => {
         let off = 0;
 
         return (
+<<<<<<< HEAD
             <div style={{ height:"100%", display:"flex", flexDirection:"column", gap:"10px" }}>
                 <p style={{ color:"rgba(255,255,255,0.35)", fontSize:"9px", letterSpacing:"0.35em" }}>
                     DEFECTS FOUND & SEVERITY
@@ -1384,6 +1410,17 @@ window.Sprint2Slide = () => {
                                 <div style={{ color:"#61E6D8", fontSize:"24px", fontWeight:800 }}>{totalAI}</div>
                                 <div style={{ color:"rgba(255,255,255,0.45)", fontSize:"9px", letterSpacing:"0.15em" }}>AI BUGS</div>
                             </div>
+=======
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8}}>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>DEFECTS FOUND & SEVERITY</p>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
+                    {/* BAR CHART */}
+                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
+                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.25em", marginBottom: "12px" }}>BUGS BY APPROACH</p>
+                        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "14px" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual</span></div>
+                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#61E6D8", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>AI-assisted</span></div>
+>>>>>>> 3556724aa1f4f935cc4c6460bb58c04566537689
                         </div>
 
                         {bugData.map((d, di) => (
@@ -1450,7 +1487,7 @@ window.Sprint2Slide = () => {
 
     // ── SLIDE 2: What each approach does better ──
     const WinsSlide = () => (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px",  zoom: 1.8 }}>
             <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>WHAT EACH APPROACH DOES BETTER</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 {[
@@ -1504,7 +1541,9 @@ window.Sprint2Slide = () => {
     const ActiveSlide = slides[slide];
 
     return (
-        <SlideRoot>
+        <SlideRoot style={{
+            zoom: 1.8
+        }}>
             <div style={{ height: "100%", display: "grid", gridTemplateColumns: "0.85fr 1.15fr", position: "relative", overflow: "hidden" }}>
 
                 {/* BG GLOWS */}
@@ -1533,7 +1572,7 @@ window.Sprint2Slide = () => {
                     </div>
 
                     {/* METRICS */}
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", zoom: 1.2}}>
                         {[
                             { val: "~40%",  label: "EFFORT SAVED" },
                             { val: "10×",   label: "FASTER TC CREATION" },
@@ -1567,7 +1606,7 @@ window.Sprint2Slide = () => {
                 <div style={{ padding: "36px 48px 36px 20px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
 
                     {/* TABS */}
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0 }}>
+                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0, zoom:1.3}}>
                         {labels.map((lbl, i) => (
                             <button key={i} onClick={() => goTo(i)} style={{
                                 padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
@@ -1614,6 +1653,10 @@ window.Sprint3Slide = () => {
     const [transitioning, setTransitioning] = React.useState(false);
     const totalSlides = 3;
 
+    // Carousel state for ModulesSlide
+    const [modIndex, setModIndex] = React.useState(0);
+    const [modTransitioning, setModTransitioning] = React.useState(false);
+
     React.useEffect(() => {
         const t = setTimeout(() => setAnimated(true), 400);
         return () => clearTimeout(t);
@@ -1628,6 +1671,15 @@ window.Sprint3Slide = () => {
         if (transitioning) return;
         setTransitioning(true);
         setTimeout(() => { setSlide(n); setTransitioning(false); }, 300);
+    };
+
+    const goToMod = (n) => {
+        if (modTransitioning) return;
+        setModTransitioning(true);
+        setTimeout(() => {
+            setModIndex(n);
+            setModTransitioning(false);
+        }, 220);
     };
 
     // ── SLIDE 0: Bar chart — Time per module ──
@@ -1647,7 +1699,6 @@ window.Sprint3Slide = () => {
         const gap = 8;
         const groupW = barW * 2 + gap;
         const groupGap = 22;
-        const totalW = modules.length * (groupW + groupGap) - groupGap;
 
         return (
             <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -1656,7 +1707,7 @@ window.Sprint3Slide = () => {
                 </p>
 
                 {/* Legend */}
-                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px", zoom: 1.8 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                         <div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/>
                         <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual (1 test)</span>
@@ -1668,8 +1719,7 @@ window.Sprint3Slide = () => {
                 </div>
 
                 {/* Chart area */}
-                <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
-                    {/* Y-axis gridlines */}
+                <div style={{ flex: 1, position: "relative", overflow: "hidden", zoom: 1.8 }}>
                     {[0, 50, 100, 150, 200, 250].map((v, i) => (
                         <div key={i} style={{
                             position: "absolute",
@@ -1684,7 +1734,6 @@ window.Sprint3Slide = () => {
                         </div>
                     ))}
 
-                    {/* Bars */}
                     <div style={{
                         position: "absolute",
                         bottom: "28px",
@@ -1696,16 +1745,14 @@ window.Sprint3Slide = () => {
                     }}>
                         {modules.map((m, i) => (
                             <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
-                                {/* Grouped bars */}
                                 <div style={{ display: "flex", alignItems: "flex-end", gap: `${gap}px` }}>
-                                    {/* Manual bar */}
                                     <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                    <span style={{
-                                        fontSize: "8px", color: "rgba(255,255,255,0.5)",
-                                        marginBottom: "2px", position: "absolute",
-                                        bottom: `${animated ? (m.manual / maxVal) * chartH : 0}px`,
-                                        transition: `bottom 0.9s ease ${i * 0.07}s`
-                                    }}>{m.manual}</span>
+                                        <span style={{
+                                            fontSize: "8px", color: "rgba(255,255,255,0.5)",
+                                            marginBottom: "2px", position: "absolute",
+                                            bottom: `${animated ? (m.manual / maxVal) * chartH : 0}px`,
+                                            transition: `bottom 0.9s ease ${i * 0.07}s`
+                                        }}>{m.manual}</span>
                                         <div style={{
                                             width: `${barW}px`,
                                             height: animated ? `${(m.manual / maxVal) * chartH}px` : "0px",
@@ -1714,14 +1761,13 @@ window.Sprint3Slide = () => {
                                             transition: `height 0.9s ease ${i * 0.07}s`
                                         }} />
                                     </div>
-                                    {/* AI bar */}
                                     <div style={{ position: "relative", width: `${barW}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                    <span style={{
-                                        fontSize: "8px", color: "#61E6D8",
-                                        marginBottom: "2px", position: "absolute",
-                                        bottom: `${animated ? (m.ai / maxVal) * chartH : 0}px`,
-                                        transition: `bottom 0.9s ease ${i * 0.07}s`
-                                    }}>{m.ai}</span>
+                                        <span style={{
+                                            fontSize: "8px", color: "#61E6D8",
+                                            marginBottom: "2px", position: "absolute",
+                                            bottom: `${animated ? (m.ai / maxVal) * chartH : 0}px`,
+                                            transition: `bottom 0.9s ease ${i * 0.07}s`
+                                        }}>{m.ai}</span>
                                         <div style={{
                                             width: `${barW}px`,
                                             height: animated ? `${(m.ai / maxVal) * chartH}px` : "0px",
@@ -1731,7 +1777,6 @@ window.Sprint3Slide = () => {
                                         }} />
                                     </div>
                                 </div>
-                                {/* X label */}
                                 <span style={{
                                     fontSize: "8px", color: "rgba(255,255,255,0.4)",
                                     textAlign: "center", width: `${groupW}px`,
@@ -1748,7 +1793,8 @@ window.Sprint3Slide = () => {
             </div>
         );
     };
-    // ── SLIDE 1: Per-module breakdown ──
+
+    // ── SLIDE 1: Per-module CAROUSEL ──
     const ModulesSlide = () => {
         const modules = [
             { icon: "⬜", name: "Navigation & UI",  rows: [["Manual (TC.03)", "~35 min"], ["AI (TC.01, 02, 04)", "~2 hrs total"], ["AI stability", "needed sync fixes", "#FFB86B"], ["AI maintainability", "needed refactor", "#FFB86B"]] },
@@ -1759,36 +1805,126 @@ window.Sprint3Slide = () => {
             { icon: "📦", name: "Product details",   rows: [["Manual (TC32)", "~95 min/TC"], ["AI (TC29–31)", "~55 min/TC (post-refactor)"], ["AI speed gain", "42% faster", "#61E6D8"], ["Framework used", "FrameUtils, WaitUtils", null]] },
             { icon: "👤", name: "User account",      rows: [["Manual (TC28)", "~80 min/TC"], ["AI (TC24–27)", "~50 min/TC (post-refactor)"], ["AI speed gain", "37% faster", "#61E6D8"], ["M1/M2 fix needed", "frame context loss", "#FF8DA1"]] },
         ];
+
+        const total = modules.length;
+        const mod = modules[modIndex];
+
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
                 <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "2px" }}>PER-MODULE BREAKDOWN</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "7px", flex: 1, alignContent: "start" }}>
-                    {modules.map((mod, mi) => (
-                        <div key={mi} style={{
-                            background: "rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            borderRadius: "12px",
-                            padding: "12px 14px"
-                        }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "8px" }}>
-                                <span style={{ fontSize: "13px" }}>{mod.icon}</span>
-                                <span style={{ fontSize: "12px", fontWeight: 700, color: "#fff" }}>{mod.name}</span>
+
+                {/* Dot nav + counter */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+                    {/* Prev */}
+                    <button onClick={() => goToMod((modIndex - 1 + total) % total)} style={{
+                        width: "28px", height: "28px", borderRadius: "50%",
+                        background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                        color: "rgba(255,255,255,0.6)", fontSize: "13px", cursor: "pointer",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0, transition: "background 0.2s"
+                    }}>‹</button>
+
+                    {/* Dots */}
+                    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                        {modules.map((m, i) => (
+                            <button key={i} onClick={() => goToMod(i)} title={m.name} style={{
+                                width: modIndex === i ? "22px" : "7px",
+                                height: "7px", borderRadius: "99px",
+                                background: modIndex === i ? "#FFB86B" : "rgba(255,255,255,0.18)",
+                                border: "none", cursor: "pointer",
+                                transition: "all 0.3s ease", padding: 0, flexShrink: 0
+                            }} />
+                        ))}
+                    </div>
+
+                    {/* Next */}
+                    <button onClick={() => goToMod((modIndex + 1) % total)} style={{
+                        width: "28px", height: "28px", borderRadius: "50%",
+                        background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+                        color: "rgba(255,255,255,0.6)", fontSize: "13px", cursor: "pointer",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0, transition: "background 0.2s"
+                    }}>›</button>
+
+                    <span style={{ marginLeft: "auto", fontSize: "10px", color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em" }}>
+                        {modIndex + 1} / {total}
+                    </span>
+                </div>
+
+                {/* Card */}
+                <div style={{
+                    flex: 1,
+                    opacity: modTransitioning ? 0 : 1,
+                    transform: modTransitioning ? "translateX(12px)" : "translateX(0)",
+                    transition: "opacity 0.22s ease, transform 0.22s ease",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                }}>
+                    {/* Main card */}
+                    <div style={{
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        borderRadius: "18px",
+                        padding: "22px 24px",
+                        flex: 1,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "14px"
+                    }}>
+                        {/* Header */}
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <span style={{ fontSize: "26px" }}>{mod.icon}</span>
+                            <div>
+                                <div style={{ fontSize: "16px", fontWeight: 700, color: "#fff" }}>{mod.name}</div>
+                                <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.15em", marginTop: "2px" }}>MODULE {modIndex + 1} OF {total}</div>
                             </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div style={{ height: "1px", background: "rgba(255,255,255,0.07)" }} />
+
+                        {/* Rows */}
+                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                             {mod.rows.map((row, ri) => (
-                                <div key={ri} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "3px 0", borderBottom: ri < mod.rows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                                    <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "9px" }}>{row[0]}</span>
+                                <div key={ri} style={{
+                                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                                    padding: "8px 12px",
+                                    borderRadius: "10px",
+                                    background: row[2] ? `${row[2]}08` : "rgba(255,255,255,0.02)",
+                                    border: `1px solid ${row[2] ? row[2] + "20" : "rgba(255,255,255,0.05)"}`
+                                }}>
+                                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "12px" }}>{row[0]}</span>
                                     <span style={{
-                                        fontSize: "9px", fontWeight: row[2] ? 600 : 400,
-                                        color: row[2] || "rgba(255,255,255,0.8)",
+                                        fontSize: "12px", fontWeight: row[2] ? 600 : 400,
+                                        color: row[2] || "rgba(255,255,255,0.85)",
                                         background: row[2] ? `${row[2]}18` : "transparent",
                                         border: row[2] ? `1px solid ${row[2]}35` : "none",
-                                        padding: row[2] ? "1px 6px" : "0",
-                                        borderRadius: "5px"
+                                        padding: row[2] ? "3px 10px" : "0",
+                                        borderRadius: "6px"
                                     }}>{row[1]}</span>
                                 </div>
                             ))}
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Mini preview strip */}
+                    <div style={{ display: "flex", gap: "6px" }}>
+                        {modules.map((m, i) => (
+                            <button key={i} onClick={() => goToMod(i)} style={{
+                                flex: 1, padding: "7px 4px", borderRadius: "10px",
+                                background: modIndex === i ? "rgba(255,184,107,0.12)" : "rgba(255,255,255,0.03)",
+                                border: modIndex === i ? "1px solid rgba(255,184,107,0.35)" : "1px solid rgba(255,255,255,0.06)",
+                                cursor: "pointer", display: "flex", flexDirection: "column",
+                                alignItems: "center", gap: "3px", transition: "all 0.2s"
+                            }}>
+                                <span style={{ fontSize: "13px" }}>{m.icon}</span>
+                                <span style={{ fontSize: "7px", color: modIndex === i ? "#FFB86B" : "rgba(255,255,255,0.3)", lineHeight: "1.2", textAlign: "center" }}>
+                                    {m.name.split(" ")[0]}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
         );
@@ -1796,7 +1932,7 @@ window.Sprint3Slide = () => {
 
     // ── SLIDE 2: What each approach does better ──
     const WinsSlide = () => (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px", zoom: 1.8 }}>
             <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>WHAT EACH APPROACH DOES BETTER</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 {[
@@ -1829,7 +1965,6 @@ window.Sprint3Slide = () => {
                     </div>
                 ))}
             </div>
-            {/* Key insight */}
             <div style={{
                 background: "rgba(97,230,216,0.06)",
                 border: "1px solid rgba(97,230,216,0.2)",
@@ -1922,7 +2057,7 @@ window.Sprint3Slide = () => {
                 <div style={{ padding: "36px 48px 36px 20px", display: "flex", flexDirection: "column", position: "relative", zIndex: 2 }}>
 
                     {/* TABS */}
-                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0 }}>
+                    <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexShrink: 0, zoom: 1.3 }}>
                         {labels.map((lbl, i) => (
                             <button key={i} onClick={() => goTo(i)} style={{
                                 padding: "6px 14px", borderRadius: "999px", fontSize: "11px", cursor: "pointer",
@@ -1959,6 +2094,364 @@ window.Sprint3Slide = () => {
             </div>
         </SlideRoot>
     );
+}
+
+/* ---------------- AUTOMATION DEMO ---------------- */
+
+window.AutomationDemoSlide = () => {
+
+    return (
+
+        <SlideRoot>
+
+            <div
+                style={{
+                    height: "100%",
+                    display: "grid",
+                    gridTemplateColumns: "0.9fr 1.1fr",
+                    position: "relative",
+                    overflow: "hidden"
+                }}
+            >
+
+                {/* BG GLOWS */}
+
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "800px",
+                        height: "800px",
+                        borderRadius: "50%",
+                        background:
+                            "radial-gradient(circle, rgba(97,230,216,0.08), transparent 70%)",
+                        right: "-180px",
+                        top: "-100px",
+                        filter: "blur(60px)"
+                    }}
+                />
+
+                <div
+                    style={{
+                        position: "absolute",
+                        width: "500px",
+                        height: "500px",
+                        borderRadius: "50%",
+                        background:
+                            "radial-gradient(circle, rgba(142,164,255,0.12), transparent 70%)",
+                        left: "-120px",
+                        bottom: "-120px",
+                        filter: "blur(50px)"
+                    }}
+                />
+
+                {/* GRID */}
+
+                <div
+                    style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                            `
+                            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+                            `,
+                        backgroundSize: "120px 120px",
+                        opacity: 0.35
+                    }}
+                />
+
+                {/* LEFT */}
+
+                <div
+                    style={{
+                        padding: "60px 40px 60px 60px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        position: "relative",
+                        zIndex: 2
+                    }}
+                >
+
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginBottom: "24px"
+                        }}
+                    >
+
+                        <span
+                            style={{
+                                width: "8px",
+                                height: "8px",
+                                borderRadius: "50%",
+                                background: "#61E6D8",
+                                boxShadow: "0 0 12px #61E6D8"
+                            }}
+                        />
+
+                        <p
+                            style={{
+                                color: "#61E6D8",
+                                letterSpacing: "0.4em",
+                                fontSize: "11px",
+                                fontWeight: "600"
+                            }}
+                        >
+                            AUTOMATION DEMO
+                        </p>
+
+                    </div>
+
+                    <h1
+                        className="display"
+                        style={{
+                            fontSize: "clamp(42px,4.6vw,74px)",
+                            lineHeight: "0.9",
+                            letterSpacing: "-0.055em",
+                            marginBottom: "18px",
+                            maxWidth: "580px"
+                        }}
+                    >
+
+                        Executing
+                        <br/>
+
+                        automated
+                        <br/>
+
+                        <span
+                            style={{
+                                background:
+                                    "linear-gradient(90deg,#ffffff,#8EA4FF)",
+                                WebkitBackgroundClip: "text",
+                                color: "transparent"
+                            }}
+                        >
+                            Selenium tests.
+                        </span>
+
+                    </h1>
+
+                    <p
+                        style={{
+                            color: "rgba(255,255,255,0.55)",
+                            fontSize: "14px",
+                            lineHeight: "1.6",
+                            maxWidth: "430px",
+                            marginBottom: "24px"
+                        }}
+                    >
+                        Live execution of automated UI test cases
+                        showcasing validation flows, assertions and
+                        real-time browser interaction.
+                    </p>
+
+                    {/* FEATURES */}
+
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px",
+                            maxWidth: "520px"
+                        }}
+                    >
+
+                        {
+                            [
+                                "Automated browser interaction using Selenium",
+                                "Real execution of regression-ready test cases",
+                                "Assertions, waits and validation checks",
+                                "Demonstration of stable automation workflows",
+                                "Tests executed directly from the framework"
+                            ].map((item, index) => (
+
+                                <div
+                                    key={index}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "12px",
+                                        padding: "10px 14px",
+                                        borderRadius: "12px",
+                                        background: "rgba(255,255,255,0.04)",
+                                        border: "1px solid rgba(255,255,255,0.08)",
+                                        backdropFilter: "blur(18px)"
+                                    }}
+                                >
+
+                                    <div
+                                        style={{
+                                            width: "24px",
+                                            height: "24px",
+                                            borderRadius: "8px",
+                                            background: "rgba(97,230,216,0.12)",
+                                            border: "1px solid rgba(97,230,216,0.25)",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            color: "#61E6D8",
+                                            fontSize: "12px",
+                                            flexShrink: 0
+                                        }}
+                                    >
+                                        ✓
+                                    </div>
+
+                                    <span
+                                        style={{
+                                            color: "rgba(255,255,255,0.78)",
+                                            fontSize: "12px"
+                                        }}
+                                    >
+                                        {item}
+                                    </span>
+
+                                </div>
+
+                            ))
+                        }
+
+                    </div>
+
+                </div>
+
+                {/* RIGHT VIDEO */}
+
+                <div
+                    style={{
+                        padding: "10px 60px 42px 12px",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        justifyContent: "center",
+                        position: "relative",
+                        zIndex: 2
+                    }}
+                >
+
+                    <div
+                        style={{
+                            width: "100%",
+                            height: "88%",
+                            borderRadius: "28px",
+                            overflow: "hidden",
+                            position: "relative",
+                            background: "#09111f",
+                            border: "1px solid rgba(97,230,216,0.18)",
+                            boxShadow:
+                                `
+                                0 30px 90px rgba(0,0,0,0.55),
+                                0 0 60px rgba(97,230,216,0.08)
+                                `
+                        }}
+                    >
+
+                        {/* TOP BAR */}
+
+                        <div
+                            style={{
+                                height: "56px",
+                                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                                display: "flex",
+                                alignItems: "center",
+                                padding: "0 18px",
+                                gap: "10px",
+                                background:
+                                    "linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.01))"
+                            }}
+                        >
+
+                            <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#FF6B7A" }} />
+                            <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#FFB86B" }} />
+                            <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#61E6D8" }} />
+
+                            <div
+                                style={{
+                                    marginLeft: "16px",
+                                    padding: "10px 18px",
+                                    borderRadius: "999px",
+                                    background: "rgba(255,255,255,0.04)",
+                                    border: "1px solid rgba(255,255,255,0.06)",
+                                    fontSize: "12px",
+                                    color: "rgba(255,255,255,0.45)",
+                                    width: "100%"
+                                }}
+                            >
+                                automation-demo.local
+                            </div>
+
+                        </div>
+
+                        {/* VIDEO */}
+
+                        <video
+                            src="Demo-automation.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            controls={false}
+                            style={{
+                                width: "100%",
+                                height: "calc(100% - 56px)",
+                                objectFit: "cover"
+                            }}
+                        />
+
+                        {/* BADGE */}
+
+                        <div
+                            style={{
+                                position: "absolute",
+                                top: "74px",
+                                left: "18px",
+                                padding: "8px 16px",
+                                borderRadius: "999px",
+                                background: "rgba(97,230,216,0.12)",
+                                border: "1px solid rgba(97,230,216,0.28)",
+                                backdropFilter: "blur(18px)",
+                                fontSize: "10px",
+                                letterSpacing: "0.18em",
+                                color: "#61E6D8",
+                                fontWeight: "700"
+                            }}
+                        >
+                            LIVE TEST EXECUTION
+                        </div>
+
+                        {/* FOOTER */}
+
+                        <div
+                            style={{
+                                position: "absolute",
+                                bottom: "18px",
+                                right: "18px",
+                                padding: "10px 16px",
+                                borderRadius: "999px",
+                                background: "rgba(8,17,31,0.78)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                                fontSize: "10px",
+                                color: "rgba(255,255,255,0.5)",
+                                letterSpacing: "0.18em",
+                                backdropFilter: "blur(18px)"
+                            }}
+                        >
+                            SELENIUM · JUNIT · AUTOMATION FRAMEWORK
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </SlideRoot>
+
+    );
+
 }
 /* ---------------- COMPARISON ---------------- */
 
@@ -2422,6 +2915,7 @@ window.Slides = [
     window.Sprint1Slide,
     window.Sprint2Slide,
     window.Sprint3Slide,
+    window.AutomationDemoSlide,
     window.ConclusionSlide,
     window.FinalSlide,
 
