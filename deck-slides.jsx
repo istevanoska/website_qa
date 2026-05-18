@@ -1226,66 +1226,117 @@ window.Sprint2Slide = () => {
 
     // ── SLIDE 0: Head-to-Head Comparison ──
     const ComparisonSlide = () => {
-        const manualRows = [
-            { label: "Time to create TCs", val: "12–15 hrs",       hl: false },
-            { label: "Test cases",          val: "~20–34",          hl: false },
-            { label: "Coverage type",       val: "deep, narrow",    hl: true,  hlColor: "#8EA4FF" },
-            { label: "Edge cases",          val: "limited",         hl: false },
-            { label: "Bug depth",           val: "high",            hl: true,  hlColor: "#61E6D8" },
-            { label: "Traceability",        val: "manual",          hl: false },
-        ];
-        const aiRows = [
-            { label: "Time to create TCs", val: "~25 min – 8 hrs",   hl: false },
-            { label: "Test cases",          val: "~21–36",            hl: false },
-            { label: "Coverage type",       val: "broad, structured", hl: true,  hlColor: "#61E6D8" },
-            { label: "Edge cases",          val: "high",              hl: true,  hlColor: "#61E6D8" },
-            { label: "Bug depth",           val: "medium",            hl: false },
-            { label: "Traceability",        val: "100% to bug IDs",   hl: true,  hlColor: "#61E6D8" },
+        const metrics = [
+            {
+                metric:"Total execution time",
+                manual:"~120–180 min",
+                ai:"~105–155 min",
+                insight:"AI reduced repetitive work"
+            },
+
+            {
+                metric:"Test cases created",
+                manual:"~20–34",
+                ai:"~21–36",
+                insight:"AI produced broader coverage"
+            },
+
+            {
+                metric:"Defects discovered",
+                manual:"14–16",
+                ai:"11–14",
+                insight:"Manual found deeper UX issues"
+            },
+
+            {
+                metric:"Coverage style",
+                manual:"Scenario-focused",
+                ai:"Broader + edge cases",
+                insight:"AI explored more combinations"
+            },
+
+            {
+                metric:"Edge-case coverage",
+                manual:"Limited",
+                ai:"High",
+                insight:"AI generated more negative scenarios"
+            },
+
+            {
+                metric:"Traceability",
+                manual:"Partial",
+                ai:"100%",
+                insight:"AI linked TCs to bug IDs consistently"
+            },
+
+            {
+                metric:"Consistency",
+                manual:"Variable",
+                ai:"Consistent",
+                insight:"AI maintained uniform structure"
+            },
+
+            {
+                metric:"Bug depth",
+                manual:"High",
+                ai:"Medium",
+                insight:"Humans detected more contextual defects"
+            }
         ];
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>HEAD-TO-HEAD COMPARISON</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
-                    {/* Manual */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#8EA4FF" }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>Manual testing</span>
+            <div style={{ height:"100%", display:"flex", flexDirection:"column", gap:"12px" }}>
+                <p style={{ color:"rgba(255,255,255,0.35)", fontSize:"9px", letterSpacing:"0.35em" }}>
+                    HEAD-TO-HEAD COMPARISON
+                </p>
+
+                <div style={{
+                    display:"grid",
+                    gridTemplateColumns:"1.1fr 1fr 1fr 1.1fr",
+                    gap:"8px",
+                    background:"rgba(255,255,255,0.04)",
+                    border:"1px solid rgba(255,255,255,0.08)",
+                    borderRadius:"18px",
+                    padding:"18px"
+                }}>
+                    {["Metric", "Manual", "AI-assisted", "Interpretation"].map((h,i)=>(
+                        <div key={i} style={{
+                            color:i===2 ? "#61E6D8" : i===1 ? "#8EA4FF" : "rgba(255,255,255,0.45)",
+                            fontSize:"10px",
+                            letterSpacing:"0.18em",
+                            fontWeight:700,
+                            marginBottom:"6px"
+                        }}>
+                            {h.toUpperCase()}
                         </div>
-                        {manualRows.map((row, i) => (
-                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: i < manualRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px" }}>{row.label}</span>
-                                <span style={{
-                                    fontSize: "11px", fontWeight: row.hl ? 600 : 400,
-                                    color: row.hl ? row.hlColor : "rgba(255,255,255,0.85)",
-                                    background: row.hl ? `${row.hlColor}18` : "transparent",
-                                    border: row.hl ? `1px solid ${row.hlColor}35` : "1px solid transparent",
-                                    padding: row.hl ? "2px 7px" : "2px 0",
-                                    borderRadius: "6px"
-                                }}>{row.val}</span>
+                    ))}
+
+                    {metrics.map((m,i)=>(
+                        <React.Fragment key={i}>
+                            <div style={{ fontSize:"12px", color:"rgba(255,255,255,0.6)", padding:"9px 0", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
+                                {m.metric}
                             </div>
-                        ))}
-                    </div>
-                    {/* AI */}
-                    <div style={{ background: "rgba(97,230,216,0.04)", border: "1px solid rgba(97,230,216,0.15)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-                            <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#61E6D8" }} />
-                            <span style={{ fontSize: "13px", fontWeight: 700 }}>AI-assisted testing</span>
-                        </div>
-                        {aiRows.map((row, i) => (
-                            <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "6px 0", borderBottom: i < aiRows.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
-                                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px" }}>{row.label}</span>
-                                <span style={{
-                                    fontSize: "11px", fontWeight: row.hl ? 600 : 400,
-                                    color: row.hl ? row.hlColor : "rgba(255,255,255,0.85)",
-                                    background: row.hl ? `${row.hlColor}18` : "transparent",
-                                    border: row.hl ? `1px solid ${row.hlColor}35` : "1px solid transparent",
-                                    padding: row.hl ? "2px 7px" : "2px 0",
-                                    borderRadius: "6px"
-                                }}>{row.val}</span>
+                            <div style={{ fontSize:"12px", color:"#8EA4FF", fontWeight:700, padding:"9px 0", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
+                                {m.manual}
                             </div>
-                        ))}
-                    </div>
+                            <div style={{ fontSize:"12px", color:"#61E6D8", fontWeight:700, padding:"9px 0", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
+                                {m.ai}
+                            </div>
+                            <div style={{ fontSize:"11px", color:"rgba(255,255,255,0.72)", padding:"9px 0", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
+                                {m.insight}
+                            </div>
+                        </React.Fragment>
+                    ))}
+                </div>
+
+                <div style={{
+                    background:"rgba(97,230,216,0.06)",
+                    border:"1px solid rgba(97,230,216,0.2)",
+                    borderRadius:"14px",
+                    padding:"14px 18px"
+                }}>
+                    <p style={{ color:"rgba(255,255,255,0.72)", fontSize:"12px", lineHeight:"1.6", margin:0 }}>
+                        <strong style={{ color:"#61E6D8" }}>Conclusion:</strong> AI improved speed, structure and edge-case coverage, while manual testing was stronger for real user behaviour and deeper defect discovery.
+                    </p>
                 </div>
             </div>
         );
@@ -1294,70 +1345,103 @@ window.Sprint2Slide = () => {
     // ── SLIDE 1: Bugs by approach + Severity donut ──
     const BugsSlide = () => {
         const bugData = [
-            { label: "",       manual: 16, ai: 11 },
-            { label: "Mobile report", manual: 14, ai: 12 },
+            { label: "Tablet testing", manual: 16, ai: 11 },
+            { label: "Mobile testing", manual: 14, ai: 12 },
         ];
+
+        const totalManual = 30;
+        const totalAI = 23;
+
         const segs = [
-            { pct: 18, color: "#FF6B7A", label: "Critical 18%" },
-            { pct: 45, color: "#FFB86B", label: "High 45%" },
-            { pct: 27, color: "#8EA4FF", label: "Medium 27%" },
-            { pct: 9,  color: "#888",    label: "Low 9%" },
+            { pct: 17, color: "#FF6B7A", label: "Critical 17%" },
+            { pct: 39, color: "#FFB86B", label: "High 39%" },
+            { pct: 31, color: "#8EA4FF", label: "Medium 31%" },
+            { pct: 13, color: "#888", label: "Low 13%" },
         ];
+
         const r = 52, cx = 70, cy = 70, thick = 22;
         const circ = 2 * Math.PI * r;
         let off = 0;
+
         return (
-            <div style={{ height: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "9px", letterSpacing: "0.35em", marginBottom: "4px" }}>DEFECTS FOUND & SEVERITY</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", flex: 1 }}>
-                    {/* BAR CHART */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px" }}>
-                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.25em", marginBottom: "12px" }}>BUGS BY APPROACH</p>
-                        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "14px" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#3b5ea6", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>Manual</span></div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><div style={{ width: "10px", height: "10px", background: "#61E6D8", borderRadius: "2px" }}/><span style={{ fontSize: "10px", color: "rgba(255,255,255,0.55)" }}>AI-assisted</span></div>
+            <div style={{ height:"100%", display:"flex", flexDirection:"column", gap:"10px" }}>
+                <p style={{ color:"rgba(255,255,255,0.35)", fontSize:"9px", letterSpacing:"0.35em" }}>
+                    DEFECTS FOUND & SEVERITY
+                </p>
+
+                <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"10px", flex:1 }}>
+                    <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:"14px", padding:"16px 18px" }}>
+                        <p style={{ color:"rgba(255,255,255,0.4)", fontSize:"10px", letterSpacing:"0.25em", marginBottom:"12px" }}>
+                            BUGS BY APPROACH
+                        </p>
+
+                        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px", marginBottom:"16px" }}>
+                            <div style={{ padding:"10px", borderRadius:"12px", background:"rgba(142,164,255,0.08)", border:"1px solid rgba(142,164,255,0.2)", textAlign:"center" }}>
+                                <div style={{ color:"#8EA4FF", fontSize:"24px", fontWeight:800 }}>{totalManual}</div>
+                                <div style={{ color:"rgba(255,255,255,0.45)", fontSize:"9px", letterSpacing:"0.15em" }}>MANUAL BUGS</div>
+                            </div>
+                            <div style={{ padding:"10px", borderRadius:"12px", background:"rgba(97,230,216,0.08)", border:"1px solid rgba(97,230,216,0.2)", textAlign:"center" }}>
+                                <div style={{ color:"#61E6D8", fontSize:"24px", fontWeight:800 }}>{totalAI}</div>
+                                <div style={{ color:"rgba(255,255,255,0.45)", fontSize:"9px", letterSpacing:"0.15em" }}>AI BUGS</div>
+                            </div>
                         </div>
+
                         {bugData.map((d, di) => (
-                            <div key={di} style={{ marginBottom: "18px" }}>
-                                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "11px", marginBottom: "7px" }}>{d.label}</p>
-                                <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-                                    {[{ val: d.manual, color: "#3b5ea6" }, { val: d.ai, color: "#61E6D8" }].map((b, bi) => (
-                                        <div key={bi} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                            <div style={{ flex: 1, height: "14px", background: "rgba(255,255,255,0.06)", borderRadius: "4px", overflow: "hidden" }}>
-                                                <div style={{ height: "100%", width: animated ? `${(b.val / 20) * 100}%` : "0%", background: b.color, borderRadius: "4px", transition: `width 0.9s ease ${di * 0.15 + bi * 0.1}s` }} />
-                                            </div>
-                                            <span style={{ color: "#fff", fontSize: "12px", fontWeight: 600, width: "18px" }}>{b.val}</span>
+                            <div key={di} style={{ marginBottom:"16px" }}>
+                                <p style={{ color:"rgba(255,255,255,0.55)", fontSize:"11px", marginBottom:"7px" }}>{d.label}</p>
+
+                                {[{name:"Manual", val:d.manual, color:"#8EA4FF"}, {name:"AI", val:d.ai, color:"#61E6D8"}].map((b, bi)=>(
+                                    <div key={bi} style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"6px" }}>
+                                        <span style={{ width:"46px", fontSize:"10px", color:"rgba(255,255,255,0.45)" }}>{b.name}</span>
+                                        <div style={{ flex:1, height:"13px", background:"rgba(255,255,255,0.06)", borderRadius:"4px", overflow:"hidden" }}>
+                                            <div style={{
+                                                height:"100%",
+                                                width:animated ? `${(b.val / 18) * 100}%` : "0%",
+                                                background:b.color,
+                                                borderRadius:"4px",
+                                                transition:`width 0.9s ease ${di * 0.15 + bi * 0.1}s`
+                                            }} />
                                         </div>
-                                    ))}
-                                </div>
+                                        <span style={{ color:"#fff", fontSize:"12px", fontWeight:700, width:"18px" }}>{b.val}</span>
+                                    </div>
+                                ))}
                             </div>
                         ))}
                     </div>
-                    {/* DONUT */}
-                    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "16px 18px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.2em", marginBottom: "12px", alignSelf: "flex-start" }}>SEVERITY SPLIT (TAMARA · 11 BUGS)</p>
-                        <svg width="140" height="140" style={{ transform: "rotate(-90deg)", flexShrink: 0 }}>
+
+                    <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:"14px", padding:"16px 18px", display:"flex", flexDirection:"column", alignItems:"center" }}>
+                        <p style={{ color:"rgba(255,255,255,0.4)", fontSize:"10px", letterSpacing:"0.2em", marginBottom:"12px", alignSelf:"flex-start" }}>
+                            OVERALL SEVERITY SPLIT
+                        </p>
+
+                        <svg width="140" height="140" style={{ transform:"rotate(-90deg)", flexShrink:0 }}>
                             <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={thick} />
-                            {segs.map((s, i) => {
+                            {segs.map((s,i)=>{
                                 const dash = (s.pct / 100) * circ;
                                 const el = (
                                     <circle key={i} cx={cx} cy={cy} r={r} fill="none" stroke={s.color} strokeWidth={thick}
                                             strokeDasharray={`${animated ? dash : 0} ${circ}`}
                                             strokeDashoffset={-off * circ / 100}
-                                            style={{ transition: `stroke-dasharray 0.9s ease ${i * 0.12}s` }} />
+                                            style={{ transition:`stroke-dasharray 0.9s ease ${i * 0.12}s` }}
+                                    />
                                 );
                                 off += s.pct;
                                 return el;
                             })}
                         </svg>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 12px", marginTop: "14px", width: "100%" }}>
-                            {segs.map((s, i) => (
-                                <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: s.color, flexShrink: 0 }} />
-                                    <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "11px" }}>{s.label}</span>
+
+                        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"6px 12px", marginTop:"14px", width:"100%" }}>
+                            {segs.map((s,i)=>(
+                                <div key={i} style={{ display:"flex", alignItems:"center", gap:"6px" }}>
+                                    <div style={{ width:"8px", height:"8px", borderRadius:"50%", background:s.color }} />
+                                    <span style={{ color:"rgba(255,255,255,0.6)", fontSize:"11px" }}>{s.label}</span>
                                 </div>
                             ))}
                         </div>
+
+                        <p style={{ color:"rgba(255,255,255,0.52)", fontSize:"11px", lineHeight:"1.55", marginTop:"18px" }}>
+                            Manual testing produced more defects overall, but AI helped increase coverage by generating structured edge cases and repeatable scenarios.
+                        </p>
                     </div>
                 </div>
             </div>
